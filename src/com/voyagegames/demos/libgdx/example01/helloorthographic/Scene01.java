@@ -1,4 +1,4 @@
-package com.voyagegames.demos.libgdx.example01;
+package com.voyagegames.demos.libgdx.example01.helloorthographic;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;

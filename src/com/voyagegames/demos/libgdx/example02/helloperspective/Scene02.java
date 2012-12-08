@@ -1,4 +1,4 @@
-package com.voyagegames.demos.libgdx.example02;
+package com.voyagegames.demos.libgdx.example02.helloperspective;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;

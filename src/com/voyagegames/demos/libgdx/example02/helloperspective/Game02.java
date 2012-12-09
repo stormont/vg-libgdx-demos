@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-public class Scene02 implements ApplicationListener {
+public class Game02 implements ApplicationListener {
 	
     private FPSLogger mFPSLogger;
     private PerspectiveCamera mCamera;

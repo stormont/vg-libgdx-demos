@@ -3,7 +3,6 @@ package com.voyagegames.demos.libgdx.example05.screens;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -17,8 +16,9 @@ public class Screen2 extends AbstractScreen {
     private RenderEntity mEntity;
     private float mElapsedTime;
 
-	public Screen2(final Game game) {
-		super(game);
+	public Screen2() {
+		super();
+		
 		mRenderGroups = new ArrayList<RenderGroup>();
 	}
 	
@@ -47,9 +47,7 @@ public class Screen2 extends AbstractScreen {
 	}
 
 	@Override
-	public void render(float delta) {
-		super.render(delta);
-
+	public void render(final float delta) {
     	Gdx.gl.glClearColor(0f, 0.2f, 0.8f, 1f);
     	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	
@@ -63,6 +61,12 @@ public class Screen2 extends AbstractScreen {
 		for (final RenderGroup rg : mRenderGroups) {
 			rg.render(delta, mCamera);
 		}
+	}
+
+	@Override
+	public void resize(final int width, final int height) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

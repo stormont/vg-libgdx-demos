@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
 public class RenderGroup {
@@ -30,8 +29,8 @@ public class RenderGroup {
 		shader.setUniformMatrix("u_viewProj", camera.combined);
 		
 		for (final RenderEntity entity : mEntities) {
-			shader.setUniformMatrix("u_modelMatrix", entity.modelMatrix);
-			entity.mesh.render(shader, GL10.GL_TRIANGLES);
+			shader.setUniformMatrix("u_modelMatrix", entity.modelMatrix());
+			entity.mesh.render(shader, entity.primitiveType);
 		}
 		
 		shader.end();

@@ -1,20 +1,19 @@
-package com.voyagegames.demos.libgdx.example05.screens;
+package com.voyagegames.demos.libgdx.example06.backgrounds;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 
-public class Scene05 extends Game {
+public class Game06 extends Game {
 
     private FPSLogger mFPSLogger;
-    private float mElapsedTime;
-    private Screen1 mScreen1;
-    private Screen2 mScreen2;
+    private ExampleScreen mScreen;
     
     private String vertexShader() {
     	return  "attribute vec4 a_position;                                 \n" +
@@ -54,26 +53,21 @@ public class Scene05 extends Game {
 	@Override
 	public void create() {
         mFPSLogger = new FPSLogger();
-        mElapsedTime = 0f;
         
         final Mesh mesh = new Mesh(true, 4, 6, VertexAttribute.Position(), VertexAttribute.ColorUnpacked());
         mesh.setVertices(vertices());
         mesh.setIndices(indices());
         
-        final RenderEntity entity = new RenderEntity(mesh);
+        final RenderEntity entity = new RenderEntity(mesh, GL10.GL_TRIANGLES);
         final RenderGroup renderGroup = new RenderGroup(new ShaderProgram(vertexShader(), fragmentShader()));
 
         renderGroup.addEntity(entity);
         
-        mScreen1 = new Screen1(this);
-        mScreen1.setRenderEntity(entity);
-        mScreen1.addRenderGroup(renderGroup);
+        mScreen = new ExampleScreen();
+        mScreen.setRenderEntity(entity);
+        mScreen.addRenderGroup(renderGroup);
         
-        mScreen2 = new Screen2(this);
-        mScreen2.setRenderEntity(entity);
-        mScreen2.addRenderGroup(renderGroup);
-        
-        setScreen(mScreen1);
+        setScreen(mScreen);
 	}
  
     @Override
@@ -82,8 +76,6 @@ public class Scene05 extends Game {
         
         final float timeDelta = Gdx.graphics.getDeltaTime();
         final Screen screen = getScreen();
-    	
-        mElapsedTime += timeDelta;
         
         if (screen != null) {
         	screen.render(timeDelta);
@@ -93,10 +85,6 @@ public class Scene05 extends Game {
         }
         
         // We can still do our own rendering here, if we want to
-        
-        if (screen != mScreen2 && mElapsedTime > 5f) {
-        	setScreen(mScreen2);
-        }
     }
 
 	@Override

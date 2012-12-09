@@ -3,6 +3,7 @@ package com.voyagegames.demos.libgdx.example04.refactoring;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,7 +11,7 @@ import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 
-public class Scene04 implements ApplicationListener {
+public class Game04 implements ApplicationListener {
 	
     private FPSLogger mFPSLogger;
     private OrthographicCamera mCamera;
@@ -63,7 +64,7 @@ public class Scene04 implements ApplicationListener {
         mesh.setVertices(vertices());
         mesh.setIndices(indices());
         
-        mEntity = new RenderEntity(mesh);
+        mEntity = new RenderEntity(mesh, GL10.GL_TRIANGLES);
 
         mRenderGroup = new RenderGroup(new ShaderProgram(vertexShader(), fragmentShader()));
         mRenderGroup.addEntity(mEntity);

@@ -6,15 +6,22 @@ import com.badlogic.gdx.math.Matrix4;
 public class RenderEntity {
 	
 	public final Mesh mesh;
-	public Matrix4 modelMatrix;
+	public final int primitiveType;
 	
-	public RenderEntity(final Mesh mesh) {
+	private Matrix4 modelMatrix;
+	
+	public RenderEntity(final Mesh mesh, final int primitiveType) {
 		this.mesh = mesh;
+		this.primitiveType = primitiveType;
 		this.modelMatrix = new Matrix4();
 	}
 	
 	public void setModelMatrix(final Matrix4 modelMatrix) {
 		this.modelMatrix = modelMatrix;
+	}
+	
+	public Matrix4 modelMatrix() {
+		return modelMatrix;
 	}
 
 }

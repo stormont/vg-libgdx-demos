@@ -1,4 +1,4 @@
-package com.voyagegames.demos.libgdx.example04.refactoring;
+package com.voyagegames.demos.libgdx.example07.positionedtextureregion;
 
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.math.Matrix4;

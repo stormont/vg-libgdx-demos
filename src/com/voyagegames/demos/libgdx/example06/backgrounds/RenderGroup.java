@@ -1,4 +1,4 @@
-package com.voyagegames.demos.libgdx.example05.screens;
+package com.voyagegames.demos.libgdx.example06.backgrounds;
 
 import java.util.ArrayList;
 import java.util.List;

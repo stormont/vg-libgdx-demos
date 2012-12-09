@@ -1,4 +1,4 @@
-package com.voyagegames.demos.libgdx.example03.addrotation;
+package com.voyagegames.demos.libgdx.example01.helloorthographic;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -9,26 +9,22 @@ import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.math.Matrix4;
 
-public class Scene03 implements ApplicationListener {
+public class Game01 implements ApplicationListener {
 	
     private FPSLogger mFPSLogger;
     private OrthographicCamera mCamera;
     private ShaderProgram mShader;
     private Mesh mMesh;
     
-    private float mElapsedTime;
-    
     private String vertexShader() {
-    	return  "attribute vec4 a_position;                  \n" +
-                "attribute vec4 a_color;                     \n" +
-                "uniform mat4 u_viewProj;                    \n" +
-                "uniform mat4 u_modelMatrix;                 \n" +
-                "varying vec4 v_color;                       \n" +
-                "void main() {                               \n" +
-                "   gl_Position =  u_viewProj * u_modelMatrix * a_position;  \n" +
-                "   v_color = a_color;                       \n" +
+    	return  "attribute vec4 a_position;                   \n" + 
+                "attribute vec4 a_color;                      \n" +
+                "uniform mat4 u_worldView;                    \n" + 
+                "varying vec4 v_color;                        \n" +  
+                "void main() {                                \n" +
+                "   gl_Position =  u_worldView * a_position;  \n" +
+                "   v_color = a_color;                        \n" + 
                 "}";
     }
     
@@ -45,7 +41,6 @@ public class Scene03 implements ApplicationListener {
 	@Override
 	public void create() {
         mFPSLogger = new FPSLogger();
-        mElapsedTime = 0f;
         
         mShader = new ShaderProgram(vertexShader(), fragmentShader());
         
@@ -71,17 +66,8 @@ public class Scene03 implements ApplicationListener {
         Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        final float timeDelta = Gdx.graphics.getDeltaTime();
-        
-        mElapsedTime += timeDelta;
-
 		mShader.begin();
-		mShader.setUniformMatrix("u_viewProj", mCamera.combined);
-		
-		final float angle = (360f * mElapsedTime) % 360f;
-		final Matrix4 modelMatrix = new Matrix4().rotate(0f, 0f, 1f, angle);
-		
-		mShader.setUniformMatrix("u_modelMatrix", modelMatrix);
+		mShader.setUniformMatrix("u_worldView", mCamera.combined);
 		mMesh.render(mShader, GL10.GL_TRIANGLES);
 		mShader.end();
     }
